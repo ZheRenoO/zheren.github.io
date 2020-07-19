@@ -6,7 +6,7 @@
     <description>Recent content in Projects on Zhe&#39;s Data Science Portfolio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2020 12:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://zherenoo.github.io/zheren.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,17 @@
       
       <guid>https://zherenoo.github.io/zheren.github.io/post/project-2/</guid>
       <description>Three hundred and forty-eight years, six months, and nineteen days ago to-day, the Parisians awoke to the sound of all the bells in the triple circuit of the city, the university, and the town ringing a full peal.    link to Github Repository</description>
+    </item>
+    
+    <item>
+      <title>Interview Prep: Keys for Answering AB Testing  Questions</title>
+      <link>https://zherenoo.github.io/zheren.github.io/post/abtesting/</link>
+      <pubDate>Sun, 09 Apr 2017 10:58:08 -0400</pubDate>
+      
+      <guid>https://zherenoo.github.io/zheren.github.io/post/abtesting/</guid>
+      <description>1 What unit you will choose to run the test? Usually User_id. If no login process, then use device_id or cookie.
+2 Your colleague gave you two data set and told you they are test/control groups from an A/B test. What will you do to make sure the data set are appropriate to use? A/A test.
+3 What will you do if you find users been assigned to both test and control group?</description>
     </item>
     
     <item>

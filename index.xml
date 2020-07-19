@@ -21,6 +21,17 @@
     </item>
     
     <item>
+      <title>Interview Prep: Keys for Answering AB Testing  Questions</title>
+      <link>https://zherenoo.github.io/zheren.github.io/post/abtesting/</link>
+      <pubDate>Sun, 09 Apr 2017 10:58:08 -0400</pubDate>
+      
+      <guid>https://zherenoo.github.io/zheren.github.io/post/abtesting/</guid>
+      <description>1 What unit you will choose to run the test? Usually User_id. If no login process, then use device_id or cookie.
+2 Your colleague gave you two data set and told you they are test/control groups from an A/B test. What will you do to make sure the data set are appropriate to use? A/A test.
+3 What will you do if you find users been assigned to both test and control group?</description>
+    </item>
+    
+    <item>
       <title>Project 1: TikTok Call</title>
       <link>https://zherenoo.github.io/zheren.github.io/post/project-1/</link>
       <pubDate>Sun, 09 Apr 2017 10:58:08 -0400</pubDate>

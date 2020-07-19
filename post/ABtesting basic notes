@@ -1,0 +1,101 @@
+ABtesting basic notes
+
+
+ 根据地里的面经，还有网上搜索的资料做了个A/B testing的整理，会有错误，希望能得到补充和指正。地里下个资料怎么权限设那么高，也太不友好了，老是提示我用户组没资格下。。。。分享求加米。。转专业水校master统计无工作经验找工作好难，投了一两百封，就只有一两个面试。
+不想整理格式了，另外由于有好几张思维导图，我直接附google docs 链接 https://docs.google.com/document ... WE/edit?usp=sharing   
+附件图片也在docs
+
+Key Assumptions For A/B testing
+Units are assigned randomly
+Units are Independent
+
+1 What unit you will choose to run the test?
+Usually User_id. If no login process, then use device_id or cookie.
+-baidu 1point3acres
+2 Your colleague gave you two data set and told you they are test/control groups from an A/B test. What will you do to make sure the data set are appropriate to use?
+A/A test.
+
+3 What will you do if you find users been assigned to both test and control group? Do you have any concern?
+Delete these users to ensure units are independent.
+
+4 What metrics do you use to measure the the effect of the change? {What to compare? How would you know the impact of your experiment? How would you make a business/product decision with your experiment?}
+Ask interviewer the goal. Clarify the goal of this product and their target user.
+
+Data Exploration
+Imbalanced Assignment
+Mix Assignment
+Sanity Check
+
+1 Check for % of test/control units. Is the % matching DOE?
+IF not match, need to figure out what’s the cause
+
+2 Check for mixed assignment (same as the key assumption Question 3)
+It’s hard to resolve. If # of mixed samples is small, OK to remove. If big, need to figure out what’s the cause
+Follow up : What’s the problem of throwing away mixed samples?
+
+3 Sanity Check: Are test/control similar in other factors other than treatment? (same as the key assumption Question 2). 1point3acres
+A/A testing.
+
+4 When we conduct random sampling, how to avoid network effect?
+What is network effect (interference)? An experiment to give a better engagement. User A and User B are friends. User B is assigned to test group while User A is at control group. User B has a better experience that make him engage more. And then his engagement leads to a better engagement for user A.
+
+
+Clustering groups with connections. Split these clusters into two parallel experiment.
+
+A) An individual-level experiment, where members are sorted randomly into treatment or control groups. (与AB test一样，随机取样对照试验）
+B) A cluster-based experiment, where a whole cluster (i.e., community) of users is either in treatment or in control. In other words, if I am treated, a significant proportion of my connections are also treated. If I am part of the control group, a significant proportion of my connections are also under control. （依照community来安排分组， 同一个cluster 都在一个组里）
+
+Exposure And Duration For A/B Testing
+1 What is your minimum sample size? What factors would you consider? How would these factors impact your sample size?
+Need: statistical power, significant level, baseline rate, minimum detectable difference
+
+2 How long would you run your experiment?
+If sample size computed by last question is 5000, the daily traffic volume for the website is 2000. Only can have 10% of the volume, then test should run 25 days. 5000/(2000*0.1) .
+And also consider about the seasonality, business cycle. It should be a complete business cycle. Usually a week.
+. From 1point 3acres bbs
+3 What will you do if your experiment take too long to run?. 1point3acres
+Increase exposure from 10% to 20%.. check 1point3acres for more.
+Based on the formula of sample size in Question 2:
+Reduce the variance by Blocking –run experiment within sub-groups
+
+4 What will you do to balance user experience and quick learning?-baidu 1point3acres
+Don’t show A/B versions to all users. May lead to bad user experience if test version is bad.
+
+5 What is your roll-out plan?
+90-10. Starting with a small portion of their total audience and slowly increasing the sample size to a higher percentage of the audience until finally reaching 100%.. check 1point3acres for more.
+
+Problems When Implementing
+What if your data is highly skewed or statistics is hard to approximate with CLT?
+Bootstrap. Shortage computational expensive.
+
+Can you run an experiment and keep reading until the result is significant?
+No. Highly increase the type 1 error (false positive rate)
+
+What is the chance of seeing at least one rejection having 10 tests simultaneously?
+follow up last question: 1-(1-0.05)^10
+
+What if you have multiple test groups? multivariate?
+Multivariate experiment will increase the type 1 error.
+Bonferroni Correction: Assume we have m test; Set significant level for each test = 0.05/m (Default significant level =0.05)
+FDR Adjustments(Benjamini-Hochberg): rank p value of m test from low to high. find the largest k such that p_k<=k/m*alpha; reject 1…..,k, accept K+1……
+undefined
+
+What if your key metrics dropped by 5% on first day? What if dropped by 20%?
+Doesn’t matter for 5% drop. NOT frequently check result. NOT stop once result turns significant. Wait until get minimum sample size from experiment design.
+Monitor for alarming changes that 20% drop. Pause and investigate if needed
+
+What is bootstrap? Boosting?
+A resampling method with replacement. It can be used to estimate sampling distribution of any statistics, commonly used in estimating CI & p-value & statistics with complex or no close-form estimator
+The metrics of interest is 90th quantile of users’ spending. How to estimate sample mean and variance?
+Use bootstrap.
+
+
+Decision Making
+What if your result show positive impact on some metrics and negative impact on some other metrics?
+Meet expectations? Yes, ready to launch. Be cautious if result is too good. May need to investigate (e.g. outliers).
+Measured the importance of each metrics. How much revenue can it bring if this metric increase. How much revenue may lose?
+
+What if your result is neutral?
+Slice on sub-groups.
+
+What if you result is statistically significant but the margin is very small? don’t know. Hope someone can leave comments.
